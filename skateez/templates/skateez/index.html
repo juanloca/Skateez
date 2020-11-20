@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Index</title>
+</head>
+<body>	
+	{% block content %}
+	{% load static %}
+	
+
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+
+		<h1 class="titulo">Página Principal Skateez</h1>
+	
+	<dir class1="menu">		
+			<h2 class="Botones"> <a href="skateez/signup/">SINGUP</a> </h2>
+		
+			<h2 class="Botones"><a href="skateez/login/">LOGIN</a> </h2>
+		
+			<h2 class="Botones"><a href="skateez/logout/">LOGOUT</a> </h2>
+
+	</dir>
+	</br>
+	<dir class="Enlaces">
+		<ul id="lista2">
+			<li>
+			<h3> <a href="skateez/tabla/">Tablas</a>	</h3>
+			</li>
+			<li>
+				<h3> <a href="admin/">Admin</a> </h3>
+			</li>
+		</ul>
+	</dir>
+	{% endblock %}
+
+</body>
+</html>

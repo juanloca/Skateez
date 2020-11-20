@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tabla</title>
+</head>
+<body>	
+		{% extends 'index.html' %}
+
+		{% block content %}
+	    <h2>Tablas</h2>
+	    {% if tabla_list %}
+	    <ul>
+	        {% for tabla in object_list %}
+
+	            <li><a href="{{ tabla.id }}/"> {{ tabla.nombre }}, {{ tabla.medida }} </a></li>
+	    	
+	    	{% endfor %}
+	    </ul>
+		{% else %}	
+
+		<p>No hay tablas</p>
+		{% endif %}
+
+		{% endblock %}
+
+</body>
+</html>

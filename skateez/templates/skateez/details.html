@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Details</title>
+</head>
+<body>
+
+	<h2>Detalles del producto</h2>
+
+	    <ul>
+	    	{% for detalle in object_list %}
+	            <li> {{ tabla.nombre }} </li>
+	            <li> {{ tabla.medida }} </li>
+	            <li> {{ tabla.marca }}	</li>
+	            <li> {{ tabla.concavo }}</li>
+	            <li> {{ tabla.precio }}	</li>
+	        {% endfor %}
+	    </ul>
+
+		
+
+</body>
+</html>
