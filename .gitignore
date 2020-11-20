@@ -1,0 +1,4 @@
+*.sqlite3
+*.pyc
+settings.py
+django-extensions
