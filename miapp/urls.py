@@ -13,3 +13,8 @@ urlpatterns = [
     path('skateez/', include('skateez.urls')),
     
 ]
+
+urlpatterns += [
+    path('accounts/', include('django.contrib.auth.urls')),
+]
+

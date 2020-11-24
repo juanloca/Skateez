@@ -4,7 +4,7 @@ from django.urls import path
 from . import views
 from django.urls import path
 from skateez.views import IndexView, DetailView, ResultsView, ListaTabla, Create, Update, Delete
-
+from django.conf.urls import url, include
 from django.conf.urls import url
 
 
@@ -22,8 +22,6 @@ urlpatterns = [
     path('signup/', views.signup, name='signup'),
     path('login/', views.login_view, name='login'),
     path('logout/',views.logout_view, name='logout'),
-
     
 ]
-
 
