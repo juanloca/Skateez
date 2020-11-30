@@ -21,6 +21,22 @@
     {% endif %}
 {% endif %}
 
+
+<h2>Iniciar sesión</h2>
+
+<form method="POST">
+    {{ form.as_p }}
+    {% csrf_token %}
+    <button type="submit">Login</button>
+</form>
+
+<hr />
+<a href="/register">Registrar usuario</a>
+
+<!-- 
+
+LOGIN ANTIGUO 
+
 <form method="post" action="{% url 'login' %}">
 {% csrf_token %}
 
@@ -41,7 +57,7 @@
 
 {# Assumes you setup the password_reset view in your URLconf #}
 <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
-
+-->
 {% endblock %}
 
 

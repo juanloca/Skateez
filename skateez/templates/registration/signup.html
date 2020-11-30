@@ -6,12 +6,17 @@
 <body>
 
 {% block content %}
-  <h2>Sign up</h2>
-  <form method="post">
-    {% csrf_token %}
+  <h2>Registrar usuario</h2>
+
+<form method="POST">
     {{ form.as_p }}
-    <button type="submit">Sign up</button>
-  </form>
+    {% csrf_token %}
+    <button type="submit">Registrar</button>
+</form>
+
+<hr />
+
+<a href="/login">Iniciar sesión</a>
 {% endblock %}
 
 </body>

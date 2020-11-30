@@ -119,38 +119,71 @@ from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 
 def signup(request):
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+    # Creamos el formulario de autenticación vacío
+    form = UserCreationForm()
+    if request.method == "POST":
+        # Añadimos los datos recibidos al formulario
+        form = UserCreationForm(data=request.POST)
+        # Si el formulario es válido...
         if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
-            login(request, user)
-            return redirect('index')
-    else:
-        form = UserCreationForm()
-    return render(request, 'skateez/signup.html', {'form': form})
+
+            # Creamos la nueva cuenta de usuario
+            user = form.save()
+
+            # Si el usuario se crea correctamente 
+            if user is not None:
+                # Hacemos el login manualmente
+                do_login(request, user)
+                # Y le redireccionamos a la portada
+                return redirect('/')
+
+    # Si llegamos al final renderizamos el formulario
+    return render(request, "registration/signup.html", {'form': form})
 
 
 # --- UserLogin ---
 
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login as do_login
 
 def login_view(request):
-    username = request.POST['username']
-    password = request.POST['password']
-    user = authenticate(request, username=username, password=password)
-    if user is not None:
-        login(request, user)
-        return redirect('index')
-        
-    else:
-        return 
+    # Creamos el formulario de autenticación vacío
+        form = AuthenticationForm()
+        if request.method == "POST":
+            # Añadimos los datos recibidos al formulario
+            form = AuthenticationForm(data=request.POST)
+            # Si el formulario es válido...
+            if form.is_valid():
+                # Recuperamos las credenciales validadas
+                username = form.cleaned_data['username']
+                password = form.cleaned_data['password']
+
+                # Verificamos las credenciales del usuario
+                user = authenticate(username=username, password=password)
+
+                # Si existe un usuario con ese nombre y contraseña
+                if user is not None:
+                    # Hacemos el login manualmente
+                    do_login(request, user)
+                    # Y le redireccionamos a la portada
+                    return redirect('/')
+
+        # Si llegamos al final renderizamos el formulario
+        return render(request, "registration/login.html", {'form': form})
         
 # --- UserLogout ---
 from django.contrib.auth import logout
 
 def logout_view(request):
     logout(request)
-    return redirect('index')
+    return redirect('/')
+
+
+# --- Welcome ---
+def welcome(request):
+    # Si estamos identificados devolvemos la portada
+    if request.user.is_authenticated:
+        return render(request, "registration/welcome.html")
+    # En otro caso redireccionamos al login
+    return redirect('/skateez/login')
