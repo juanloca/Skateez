@@ -23,6 +23,7 @@ urlpatterns = [
     path('login/', views.login_view, name='login'),
     path('logout/',views.logout_view, name='logout'),
     path('welcome/',views.welcome, name='welcome'),
-    
+    path('api-auth/', include('rest_framework.urls')),
+
 ]
 
