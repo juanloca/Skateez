@@ -4,6 +4,19 @@
 	<title>Index</title>
 </head>
 <body>	
+
+	{% block barra_busqueda %}
+	<div class="barra">
+		<form method="get">
+			<input type="text" placeholder="Busca..." name="buscar">
+			<span class="input_list">
+				<button type="submit">
+					Buscar
+				</button>
+			</span>
+		</form>
+	</div>
+	{% endblock barra_busqueda %}
 	{% block content %}
 	
 

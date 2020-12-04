@@ -21,7 +21,7 @@
     {% endif %}
 {% endif %}
 
-
+<p>Para acceder a la pagina principal de Skateez debe iniciar sesión</p>
 <h2>Iniciar sesión</h2>
 
 <form method="POST">
@@ -31,33 +31,7 @@
 </form>
 
 <hr />
-<a href="/register">Registrar usuario</a>
-
-<!-- 
-
-LOGIN ANTIGUO 
-
-<form method="post" action="{% url 'login' %}">
-{% csrf_token %}
-
-<div>
-  <td>{{ form.username.label_tag }}</td>
-  <td>{{ form.username }}</td>
-</div>
-<div>
-  <td>{{ form.password.label_tag }}</td>
-  <td>{{ form.password }}</td>
-</div>
-
-<div>
-  <input type="submit" value="login" />
-  <input type="hidden" name="next" value="{{ next }}" />
-</div>
-</form>
-
-{# Assumes you setup the password_reset view in your URLconf #}
-<p><a href="{% url 'password_reset' %}">Lost password?</a></p>
--->
+<a href="/skateez/signup/">Registrar usuario</a>
 {% endblock %}
 
 

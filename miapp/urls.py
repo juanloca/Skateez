@@ -9,8 +9,6 @@ router = routers.DefaultRouter()
 router.register(r'tabla', views.TablaViewSet)
 router.register(r'ejes', views.EjesViewSet)
 
-
-
 app_name = 'skateez'
 
 urlpatterns = [

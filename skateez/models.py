@@ -17,9 +17,6 @@ from django.db import models
 class IndexView(models.Model):
     template_name = 'skateez/index.html'
 
-    
-
-
 # --- Items ---
 
 class Tabla(models.Model):
@@ -103,17 +100,6 @@ class Pedidos(models.Model):
       verbose_name_plural = "Pedidos"
     def __str__(self):
        return self.numero_pedido
-
-
-# !!CAMBIAR!!
-
-class Author(models.Model):
-        name = models.CharField(max_length=200)
-        created_by = models.ForeignKey(User, on_delete=models.CASCADE)
-
-
-        def get_absolute_url(self):
-            return reverse('author-detail', kwargs={'pk': self.pk})
 
 
 # --- USUARIOS ---

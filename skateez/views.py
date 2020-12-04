@@ -7,7 +7,6 @@ from .models import Tabla
 from django.views.generic import ListView
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
-from skateez.models import Author
 from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
@@ -25,6 +24,9 @@ class IndexView(generic.ListView):
     def get_queryset(self):
 
         return Tabla.objects.all()
+
+   
+
 class DetailView(generic.DetailView):
     model = Tabla
     template_name = 'skateez/detail.html'
@@ -32,29 +34,6 @@ class DetailView(generic.DetailView):
 class ResultsView(generic.DetailView):
     model = Tabla
     template_name = 'skateez/results.html'
-
-# !!CAMBIAR!!
-
-from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from django.contrib.auth.models import User
-
-from skateez.models import Usuario
-
-# Define an inline admin descriptor for Employee model
-# which acts a bit like a singleton
-class EmployeeInline(admin.StackedInline):
-    model = Usuario
-    can_delete = False
-    verbose_name_plural = 'Usuario'
-
-# Define a new User admin
-class UserAdmin(BaseUserAdmin):
-    inlines = (EmployeeInline,)
-
-# Re-register UserAdmin
-admin.site.unregister(User)
-admin.site.register(User, UserAdmin)
 
 
     
@@ -76,19 +55,19 @@ class ListaTabla(ListView):
 
 
 class Create(CreateView):
-    model = Author
+    model = Tabla
     fields = ['name']
 
 class Update(UpdateView):
-    model = Author
+    model = Tabla
     fields = ['name']
 
 class Delete(DeleteView):
-    model = Author
+    model = Tabla
     success_url = reverse_lazy('author-list')
 
 class Create(LoginRequiredMixin, CreateView):
-    model = Author
+    model = Tabla
     fields = ['name']
 
     def form_valid(self, form):
@@ -177,13 +156,14 @@ from django.contrib.auth import logout
 
 def logout_view(request):
     logout(request)
-    return redirect('/')
+    return redirect('/skateez/welcome')
 
 
 # --- Welcome ---
+
 def welcome(request):
     # Si estamos identificados devolvemos la portada
-    if request.user.is_authenticated:
-        return render(request, "registration/welcome.html")
-    # En otro caso redireccionamos al login
-    return redirect('/skateez/login')
+        if request.user.is_authenticated:
+            return render(request, "registration/index.html")
+        # En otro caso redireccionamos al login
+        return redirect('/skateez/login')

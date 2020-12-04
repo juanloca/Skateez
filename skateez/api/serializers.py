@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from skateez.models import *
+from skateez.models import 	*
 
 class TablaSerializer(serializers.HyperlinkedModelSerializer):
 
