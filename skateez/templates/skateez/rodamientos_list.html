@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Tabla</title>
+	<title>Rodamientos</title>
 </head>
 <body>	
 		{% block barra_busqueda %}
@@ -17,20 +17,23 @@
 	</div>
 	{% endblock barra_busqueda %}
 
-	    <h2>Tablas</h2>
-	    {% if tabla_list %}
+		{% block content %}
+	    <h2>Rodamientoss</h2>
+	    {% if Rodamientos_list %}
 	    <ul>
-	        {% for tabla in object_list %}
+	        {% for Rodamientos in object_list %}
 
-	            <li><a href="{{ tabla.id }}/"> {{ tabla.nombre }}, {{ tabla.medida }} </a></li>
+	            <li><a href="{{ Rodamientos.id }}/"> {{ Rodamientos.nombre }}, {{ Rodamientos.medida }} </a></li>
 	    	
 	    	{% endfor %}
 	    </ul>
 		{% else %}	
 
-		<p>No hay tablas</p>
+		<p>No hay Rodamientoss</p>
 		{% endif %}
-	
+
+		{% endblock %}
+
 </body>
 </html>
 

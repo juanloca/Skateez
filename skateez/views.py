@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.template import loader
 from django.http import Http404	
 from .models import Cliente
-from .models import Tabla
+from .models import *
 from django.views.generic import ListView
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
@@ -41,6 +41,15 @@ class ResultsView(generic.DetailView):
 
 class ListaTabla(ListView):
 	model = Tabla
+
+class ListaEjes(ListView):
+    model = Ejes
+
+class ListaRuedas(ListView):
+    model = Ruedas
+
+class ListaRodamientos(ListView):
+    model = Rodamientos
 
 """	
 	template_name = 'skateez/tabla_list.html'
@@ -167,3 +176,18 @@ def welcome(request):
             return render(request, "registration/index.html")
         # En otro caso redireccionamos al login
         return redirect('/skateez/login')
+# --- Search ---
+# Incompleto
+
+from django.db.models import Q
+def home(request):
+
+    queryset = request.GET.get("buscar")
+    post = Post.objects.filter(estado = True)
+    if queryset:
+        posts = Post.object.filter(
+            Q(nombre__icontains = queryset) |
+            Q(precio__icontains = queryset)
+
+            ).distinct()
+    return render(request,'index.html',{'posts':posts})
